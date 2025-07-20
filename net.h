@@ -4,4 +4,5 @@
 void play();
 
 int command(const char* str);
+
 #endif

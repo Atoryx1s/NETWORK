@@ -3,7 +3,7 @@
 #include "net.h"
 
 int command(const char* str){
-if (strcmp(str, "show command") == 0) return 1;
+if (strcmp(str, "?") == 0) return 1;
 if (strcmp(str, "ipconfig") == 0) return 2;
 if (strcmp(str, "ipconfig /all") == 0) return 3;
 if (strcmp(str, "ipconfig /release") == 0) return 4;
@@ -33,6 +33,7 @@ void play(){
 char str[256];
 
 while(1){
+
 printf("\033[1;31m> \033[0m");
 if (fgets(str, sizeof(str), stdin) == NULL) break;
 
@@ -126,6 +127,10 @@ break;
 case 22:
 printf("\033[1;34mEXIT \033[0m\n");
 return;
+
+default:
+printf("\033[1;35m !COMMAND NOT FOUND! \033[0m\n");
+break;
 }
 }
 }

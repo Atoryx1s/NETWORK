@@ -1,34 +1,34 @@
 #include <stdio.h>
 #include <string.h>
-#include "net.h"
+#include "win.h"
 
-int command(const char* str){
-if (strcmp(str, "?") == 0) return 1;
-if (strcmp(str, "ipconfig") == 0) return 2;
-if (strcmp(str, "ipconfig /all") == 0) return 3;
-if (strcmp(str, "ipconfig /release") == 0) return 4;
-if (strcmp(str, "ipconfig /renew") == 0) return 5;
-if (strcmp(str, "ipconfig /flushdns") == 0) return 6;
-if (strcmp(str, "ping [IP]") == 0) return 7;
-if (strcmp(str, "ping /?") == 0) return 8;
-if (strcmp(str, "tracert [IP]") == 0) return 9;
-if (strcmp(str, "tracert /?") == 0) return 10;
-if (strcmp(str, "nslookup [domain]") == 0) return 11;
-if (strcmp(str, "netstat -an") == 0) return 12;
-if (strcmp(str, "arp -a") == 0) return 13;
-if (strcmp(str, "hostname") == 0) return 14;
-if (strcmp(str, "getmac") == 0) return 15;
-if (strcmp(str, "net use") == 0) return 16;
-if (strcmp(str, "net share") == 0) return 17;
-if (strcmp(str, "net start") == 0) return 18;
-if (strcmp(str, "net stop") == 0) return 19;
-if (strcmp(str, "netsh") == 0) return 20;
+int command_windows(const char* str){
+if (strcmp(str, "?") == 0)                        return 1;
+if (strcmp(str, "ipconfig") == 0)                 return 2;
+if (strcmp(str, "ipconfig /all") == 0)            return 3;
+if (strcmp(str, "ipconfig /release") == 0)        return 4;
+if (strcmp(str, "ipconfig /renew") == 0)          return 5;
+if (strcmp(str, "ipconfig /flushdns") == 0)       return 6;
+if (strcmp(str, "ping [IP]") == 0)                return 7;
+if (strcmp(str, "ping /?") == 0)                  return 8;
+if (strcmp(str, "tracert [IP]") == 0)             return 9;
+if (strcmp(str, "tracert /?") == 0)               return 10;
+if (strcmp(str, "nslookup [domain]") == 0)        return 11;
+if (strcmp(str, "netstat -an") == 0)              return 12;
+if (strcmp(str, "arp -a") == 0)                   return 13;
+if (strcmp(str, "hostname") == 0)                 return 14;
+if (strcmp(str, "getmac") == 0)                   return 15;
+if (strcmp(str, "net use") == 0)                  return 16;
+if (strcmp(str, "net share") == 0)                return 17;
+if (strcmp(str, "net start") == 0)                return 18;
+if (strcmp(str, "net stop") == 0)                 return 19;
+if (strcmp(str, "netsh") == 0)                    return 20;
 if (strcmp(str, "netsh wlan show profiles") == 0) return 21;
-if (strcmp(str, "exit") == 0) return 22;
+if (strcmp(str, "exit") == 0)                     return 22;
 return 0;
 }
 
-void play(){
+void windows(){
 
 char str[256];
 
@@ -38,7 +38,7 @@ printf("\033[1;31m> \033[0m");
 if (fgets(str, sizeof(str), stdin) == NULL) break;
 
 str[strcspn(str, "\n")] = '\0';
-switch (command(str)){
+switch (command_windows(str)){
 
 case 1:
 printf("\033[1;32mipconfig\nipconfig /all\nipconfig /release\nipconfig /renew\nipconfig /flushdns\nping [IP]\nping /?\ntracert [IP]\ntracert /?\nnslookup [domain]\nnetstat -an\narp -a\nhostname\ngetmac\nnet use\nnet share\nnet start\nnet stop\nnetsh\nnetsh wlan show profiles\nexit\033[0n\n");
